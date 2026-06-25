@@ -1,13 +1,15 @@
 // src/db/db.js
 const { Pool } = require('pg');
-require('dotenv').config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  user: 'postgres',       // Por defecto suele ser 'postgres'
+  host: 'localhost',
+  database: 'm2_proyectointegrador', 
+  password: 'Mora1993', // ¡Acá tu clave en texto plano!
+  port: 5432, // El puerto por defecto de Postgres
 });
 
-// Exportamos un objeto con el método query para que coincida con tus servicios
 module.exports = {
   query: (text, params) => pool.query(text, params),
-  end: () => pool.end() // Esto ayuda a que Jest pueda cerrar la conexión al terminar
+  end: () => pool.end()
 };

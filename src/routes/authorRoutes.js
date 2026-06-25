@@ -7,7 +7,7 @@ const validateAuthor = require('../middlewares/validateAuthor'); // Importamos e
 // Rutas de Autores
 
 // 1. Listar todos los autores
-router.get('/', authorController.getAuthors);
+router.get('/', authorController.getAllAuthors);
 
 // 2. Detalle de un autor por ID
 router.get('/:id', authorController.getAuthorById);
