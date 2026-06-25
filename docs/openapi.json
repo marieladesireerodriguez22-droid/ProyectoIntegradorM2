@@ -1,0 +1,198 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API de Autores y Posts - Proyecto Integrador M2",
+    "description": "API REST en Node.js + Express + PostgreSQL tipo JSONPlaceholder que gestiona autores y posts.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor de desarrollo local"
+    }
+  ],
+  "paths": {
+    "/authors": {
+      "get": {
+        "summary": "Listar todos los autores",
+        "responses": {
+          "200": { "description": "Lista de autores obtenida con éxito." },
+          "500": { "description": "Error interno del servidor." }
+        }
+      },
+      "post": {
+        "summary": "Crear un nuevo autor",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "email"],
+                "properties": {
+                  "name": { "type": "string", "example": "Juan Pérez" },
+                  "email": { "type": "string", "example": "juan@example.com" },
+                  "bio": { "type": "string", "example": "Desarrollador Full Stack apasionado por Node.js." }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Autor creado con éxito." },
+          "400": { "description": "Datos de entrada inválidos (Falta name o email)." },
+          "500": { "description": "Error interno del servidor o email duplicado." }
+        }
+      }
+    },
+    "/authors/{id}": {
+      "get": {
+        "summary": "Obtener el detalle de un autor por ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Detalle del autor obtenido con éxito." },
+          "404": { "description": "Autor no encontrado." },
+          "500": { "description": "Error interno del servidor." }
+        }
+      },
+      "put": {
+        "summary": "Actualizar un autor por ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "email"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "email": { "type": "string" },
+                  "bio": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Autor actualizado con éxito." },
+          "400": { "description": "Datos inválidos." },
+          "404": { "description": "Autor no encontrado." },
+          "500": { "description": "Error interno del servidor." }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un autor por ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "204": { "description": "Autor eliminado con éxito (sin contenido)." },
+          "404": { "description": "Autor no encontrado." },
+          "500": { "description": "Error interno del servidor." }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "summary": "Listar todos los posts",
+        "responses": {
+          "200": { "description": "Lista de posts obtenida con éxito." },
+          "500": { "description": "Error interno del servidor." }
+        }
+      },
+      "post": {
+        "summary": "Crear un nuevo post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content", "author_id"],
+                "properties": {
+                  "title": { "type": "string", "example": "Mi primer Post" },
+                  "content": { "type": "string", "example": "Contenido del post..." },
+                  "author_id": { "type": "integer", "example": 1 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Post creado con éxito." },
+          "400": { "description": "Faltan campos obligatorios." },
+          "500": { "description": "Error interno del servidor." }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "get": {
+        "summary": "Obtener el detalle de un post por ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Detalle del post obtenido con éxito." },
+          "404": { "description": "Post no encontrado." },
+          "500": { "description": "Error interno del servidor." }
+        }
+      },
+      "put": {
+        "summary": "Actualizar un post por ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content", "author_id"],
+                "properties": {
+                  "title": { "type": "string" },
+                  "content": { "type": "string" },
+                  "author_id": { "type": "integer" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Post actualizado con éxito." },
+          "400": { "description": "Datos inválidos." },
+          "404": { "description": "Post no encontrado." },
+          "500": { "description": "Error interno del servidor." }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un post por ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "204": { "description": "Post eliminado con éxito (sin contenido)." },
+          "404": { "description": "Post no encontrado." },
+          "500": { "description": "Error interno del servidor." }
+        }
+      }
+    },
+    "/posts/author/{authorId}": {
+      "get": {
+        "summary": "Obtener posts con el detalle de su autor",
+        "parameters": [
+          { "name": "authorId", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Lista de posts del autor devuelta correctamente." },
+          "500": { "description": "Error interno del servidor." }
+        }
+      }
+    }
+  }
+}

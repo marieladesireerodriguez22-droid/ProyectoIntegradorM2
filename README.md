@@ -1,22 +1,37 @@
-# 🚀 Proyecto Integrador M2 - API REST con Express y PostgreSQL
+# 🚀 Proyecto Integrador M2 - API REST Autores y Posts
 
-Este proyecto consiste en una API REST sencilla construida con **Node.js**, **Express** y **PostgreSQL** para gestionar usuarios (`authors`) y publicaciones (`posts`), simulando el comportamiento de un modelo tipo JSONPlaceholder. Incluye validaciones robustas, códigos de estado HTTP normativos y pruebas unitarias automatizadas con **Jest** y **Supertest**.
+API REST sencilla construida con **Node.js**, **Express** y **PostgreSQL** (utilizando el driver nativo `pg`). El diseño imita un flujo tipo JSONPlaceholder donde un autor puede tener asociados múltiples posts, incluyendo validaciones personalizadas, manejo de errores a través de middlewares, documentación bajo el estándar OpenAPI y tests automatizados.
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
 
-* **Node.js** & **Express** - Entorno de ejecución y framework web.
-* **PostgreSQL** - Base de datos relacional para persistencia de datos.
-* **`pg` (node-postgres)** - Cliente de PostgreSQL para Node.js (Consultas SQL nativas).
-* **Jest** & **Supertest** - Framework de testing y aserciones HTTP.
+* **Runtime:** Node.js
+* **Framework:** Express.js
+* **Base de Datos:** PostgreSQL
+* **Driver DB:** `pg` (Pool de conexiones y consultas parametrizadas)
+* **Testing:** Jest y Supertest
+* **Especificación:** OpenAPI 3.0 (JSON)
 
 ---
 
-## 💻 Configuración Local
+## 📂 Estructura del Proyecto
 
-### 1. Clonar el repositorio e instalar dependencias
-```bash
-git clone <URL_DE_TU_REPOSITORIO>
-cd ProyectoIntegradorM2
-npm install
+```text
+├── docs/
+│   └── openapi.json          # Documentación OpenAPI 3.0
+├── scripts/
+│   ├── setup.sql             # Script de creación de tablas
+│   └── seedData.sql          # Datos de prueba iniciales
+├── src/
+│   ├── controllers/          # Controladores de la lógica de negocio
+│   ├── db/                   # Configuración del Pool de Postgres
+│   ├── middlewares/          # Validaciones de entrada (Author y Post)
+│   ├── routes/               # Definición de endpoints (Router)
+│   ├── services/             # Consultas parametrizadas SQL
+│   ├── app.js                # Configuración de Express
+│   └── server.js             # Punto de entrada de la aplicación
+├── tests/                    # Pruebas de integración con Supertest
+├── .env.example              # Plantilla de variables de entorno
+├── .gitignore                # Archivos excluidos en Git
+└── package.json
