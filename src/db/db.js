@@ -1,12 +1,12 @@
 // src/db/db.js
 const { Pool } = require('pg');
+const path = require('path');
+
+// Esto busca el archivo .env en la raíz de tu proyecto
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 const pool = new Pool({
-  user: 'postgres',       // Por defecto suele ser 'postgres'
-  host: 'localhost',
-  database: 'm2_proyectointegrador', 
-  password: 'Mora1993', // ¡Acá tu clave en texto plano!
-  port: 5432, // El puerto por defecto de Postgres
+  connectionString: process.env.DATABASE_URL,
 });
 
 module.exports = {
