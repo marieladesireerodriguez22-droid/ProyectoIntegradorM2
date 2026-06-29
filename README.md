@@ -75,3 +75,12 @@ Para desplegar esta API en Railway, seguir estos pasos:
 4. **Comandos de Inicio:**
    * Railway detectará automáticamente el `package.json` y ejecutará el comando `npm start`. Asegurarse de que en `package.json` el script `start` apunte a `node src/server.js`.
 
+## 🤖 Uso de Inteligencia Artificial
+
+Para el desarrollo de este proyecto se utilizaron herramientas de Inteligencia Artificial (IA) como asistencia y copiloto de desarrollo, aplicando buenas prácticas de ingeniería de prompts bajo los siguientes lineamientos:
+
+* **Asistencia en Debugging y Git:** Uso de IA para la resolución de conflictos avanzados de control de versiones (`detached HEAD`, bloqueos de rebase) y análisis de errores de sintaxis en la terminal.
+* **Optimización y Refactorización:** Soporte en el análisis de respuestas de la API vs. aserciones esperadas en el entorno de pruebas automatizadas con Jest y Supertest.
+* **Documentación:** Colaboración en el armado y estructuración de guías de despliegue y documentación técnica del repositorio.
+
+*Nota: Todo el código, la lógica de negocio, las rutas de Express y el diseño de la base de datos PostgreSQL fueron analizados, validados y ejecutados bajo supervisión humana, asegurando el cumplimiento de las consignas académicas.*
