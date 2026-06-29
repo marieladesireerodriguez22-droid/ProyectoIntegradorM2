@@ -61,7 +61,7 @@ describe('🧪 Tests para la entidad Authors (/api/authors)', () => {
         .send(autorInvalido);
 
       expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty('message');
+      expect(response.body).toHaveProperty('error');
     });
   });
 });
