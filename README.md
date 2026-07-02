@@ -8,6 +8,7 @@ El proyecto expone endpoints CRUD para gestionar autores y sus publicaciones. In
 
 * **Stack técnico:** Node.js · Express 4 · PostgreSQL · pg · Jest · Supertest
 * **Deploy en Railway:**
+  
 🏠 Estado/Bienvenida: https://proyectointegradorm2-production.up.railway.app/
 👥 Autores: https://proyectointegradorm2-production.up.railway.app/api/authors
 📝 Publicaciones: https://proyectointegradorm2-production.up.railway.app/api/posts
