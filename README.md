@@ -1,86 +1,68 @@
-Markdown# MiniBlog API 🚀
+Markdown# 📚 API Proyecto Integrador M2
 
-API REST construida con Node.js + Express + PostgreSQL para gestionar autores y publicaciones. Proyecto integrador para DevSpark.
+API REST de una plataforma de publicaciones con autores y posts, construida con Express.js y PostgreSQL.
 
-## Estructura del proyecto
+## 📋 Descripción
 
-ProyectoIntegradorM2/
-├── src/
-│   ├── app.js              # Express app (configuración y exportable para tests)
-│   ├── server.js           # Entry point (levanta el servidor y escucha en el puerto)
-│   ├── db/
-│   │   └── db.js           # Conexión a PostgreSQL (pg.Pool)
-│   ├── routes/
-│   │   ├── authorRoutes.js # Rutas para /api/authors
-│   │   └── postRoutes.js   # Rutas para /api/posts
-│   ├── controllers/
-│   │   ├── authorController.js # Controladores de autores
-│   │   └── postController.js   # Controladores de posts
-│   ├── services/
-│   │   ├── authorsService.js   # Queries SQL y lógica de autores
-│   │   └── postsService.js     # Queries SQL y lógica de posts
-│   └── middlewares/
-│       ├── validateAuthor.js   # Middleware de validación de autores
-│       └── validatePost.js     # Middleware de validación de posts
-├── scripts/
-│   ├── setup.sql           # Script SQL para creación de tablas
-│   └── seedData.sql        # Script SQL con datos de prueba iniciales
-├── tests/
-│   ├── authors.test.js     # Tests de autores
-│   └── post.test.js        # Tests de posts
-├── docs/
-│   └── openapi.json        # Documentación OpenAPI 3.0 de la API
-├── .env
-├── .env.example            # Plantilla de variables de entorno
-├── .gitignore              # Archivos excluidos de Git (como el .env)
-└── package.json            # Dependencias y scripts del proyecto
+El proyecto expone endpoints CRUD para gestionar autores y sus publicaciones. Incluye validaciones mediante middlewares, manejo seguro de errores, consultas parametrizadas con PostgreSQL y una suite completa de pruebas automatizadas con Jest + Supertest.
 
-## Requisitos
+* **Stack técnico:** Node.js · Express 4 · PostgreSQL · pg · Jest · Supertest
+* **Deploy en Railway:**
+  * https://proyectointegradorm2-production.up.railway.app/ — URL Principal / Estado
+  * https://proyectointegradorm2-production.up.railway.app/authors — Listar autores
+  * https://proyectointegradorm2-production.up.railway.app/posts — Listar publicaciones
 
-* Node.js >= 18
-* PostgreSQL >= 14
-* npm >= 9
+## 📍 Endpoints Disponibles
 
-## Ejecución local
+| Método | Ruta | Descripción |
+| :--- | :--- | :--- |
+| **GET** | `/` | Estado del servidor / Bienvenida |
+| **GET** | `/authors` | Listar todos los autores |
+| **POST** | `/authors` | Crear un nuevo autor (Valida campos obligatorios) |
+| **GET** | `/authors/:id` | Obtener un autor por ID |
+| **PUT** | `/authors/:id` | Actualizar un autor por ID |
+| **DELETE** | `/authors/:id` | Eliminar un autor por ID |
+| **GET** | `/posts` | Listar todas las publicaciones |
+| **POST** | `/posts` | Crear una nueva publicación (Valida campos obligatorios) |
+| **GET** | `/posts/:id` | Obtener una publicación por ID |
+| **PUT** | `/posts/:id` | Actualizar una publicación por ID |
+| **DELETE** | `/posts/:id` | Eliminar una publicación por ID |
 
-### 1. Clonar e instalar dependencias
+## 📁 Estructura del Proyecto
 
-```bash
+```text
+📦 ProyectoIntegradorM2
+ ┣ 📂 src/
+ ┃ ┣ 📂 controllers/     → Manejadores de peticiones HTTP
+ ┃ ┣ 📂 db/
+ ┃ ┃ ┗ 📜 db.js          → Configuración del Pool de PostgreSQL
+ ┃ ┣ 📂 middlewares/    → Validaciones (validateAuthor, validatePost)
+ ┃ ┣ 📂 routes/         → Definición de rutas REST (authorRoutes, postRoutes)
+ ┃ ┣ 📂 services/       → Lógica de negocio y consultas SQL parametrizadas
+ ┃ ┣ 📜 app.js          → Configuración de Express
+ ┃ ┗ 📜 server.js       → Punto de entrada del servidor
+ ┣ 📂 tests/            → Tests automatizados (authors.test, post.test)
+ ┣ 📜 .env
+ ┣ 📜 .env.example      → Plantilla de variables de entorno
+ ┣ 📜 .gitignore
+ ┣ 📜 package-lock.json
+ ┗ 📜 package.json      → Scripts y dependencias del proyecto
+🚀 RequisitosNode.js >= 18PostgreSQL >= 13npm⚙️ Pasos para Ejecutar en LocalBash# 1. Clonar el repositorio
 git clone [https://github.com/marieladesireerodriguez22-droid/ProyectoIntegradorM2.git](https://github.com/marieladesireerodriguez22-droid/ProyectoIntegradorM2.git)
 cd ProyectoIntegradorM2
+
+# 2. Instalar dependencias
 npm install
 
-## 🚀 Deploy en Railway
-
-Para desplegar esta API en Railway, seguir estos pasos:
-
-1. **Crear el proyecto en Railway:**
-   * Ir a [railway.app](https://railway.app/) e iniciar sesión con GitHub.
-   * Hacer clic en **New Project** y seleccionar **Deploy from GitHub repository**.
-   * Elegir este repositorio (`ProyectoIntegradorM2`).
-
-2. **Agregar la Base de Datos (PostgreSQL):**
-   * En el mismo espacio de trabajo de Railway, hacer clic en **New** > **Database** > **Add PostgreSQL**.
-   * Railway creará la base de datos automáticamente y generará las variables de conexión.
-
-3. **Configurar las Variables de Entorno (Variables):**
-   * Ir al servicio de la API de Express en Railway, entrar a la pestaña **Variables** y asociar las variables de la base de datos usando las que provee Railway:
-     * `PORT` = `3000`
-     * `DB_USER` = `${{Postgres.DATABASE_URL}}` (o las credenciales separadas que te da el plugin de Postgres).
-     * `DB_PASSWORD` = `${{Postgres.PGPASSWORD}}`
-     * `DB_HOST` = `${{Postgres.PGHOST}}`
-     * `DB_NAME` = `${{Postgres.PGDATABASE}}`
-     * `DB_PORT` = `${{Postgres.PGPORT}}`
-
-4. **Comandos de Inicio:**
-   * Railway detectará automáticamente el `package.json` y ejecutará el comando `npm start`. Asegurarse de que en `package.json` el script `start` apunte a `node src/server.js`.
-
-## 🤖 Uso de Inteligencia Artificial
-
-Para el desarrollo de este proyecto se utilizaron herramientas de Inteligencia Artificial (IA) como asistencia y copiloto de desarrollo, aplicando buenas prácticas de ingeniería de prompts bajo los siguientes lineamientos:
-
-* **Asistencia en Debugging y Git:** Uso de IA para la resolución de conflictos avanzados de control de versiones (`detached HEAD`, bloqueos de rebase) y análisis de errores de sintaxis en la terminal.
-* **Optimización y Refactorización:** Soporte en el análisis de respuestas de la API vs. aserciones esperadas en el entorno de pruebas automatizadas con Jest y Supertest.
-* **Documentación:** Colaboración en el armado y estructuración de guías de despliegue y documentación técnica del repositorio.
-
-*Nota: Todo el código, la lógica de negocio, las rutas de Express y el diseño de la base de datos PostgreSQL fueron analizados, validados y ejecutados bajo supervisión humana, asegurando el cumplimiento de las consignas académicas.*
+# 3. Configurar variables de entorno
+cp .env.example .env
+Editar el .env con tus datos de pgAdmin local:Fragmento de códigoPORT=3000
+DB_USER=tu_usuario_postgres
+DB_PASSWORD=tu_contraseña
+DB_HOST=localhost
+DB_NAME=m2_proyectointegrador
+DB_PORT=5432
+Bash# 4. Iniciar el servidor
+npm start
+Servidor disponible en http://localhost:3000🧪 Cómo Ejecutar los TestsEl proyecto incluye pruebas de integración que verifican el correcto funcionamiento de las operaciones CRUD y las validaciones de datos.Bashnpm test
+☁️ Guía de Deployment en Railway1. Conectar el RepositorioIniciá sesión en Railway con tu cuenta de GitHub.Creá un New Project y seleccioná Deploy from GitHub repository apuntando a ProyectoIntegradorM2.2. Base de Datos en la NubeAgregá un plugin de PostgreSQL desde el dashboard del mismo espacio de trabajo.3. Variables de Entorno en RailwayEn la pestaña Variables del servicio de tu API de Express, asociá las credenciales usando las referencias internas de tu Postgres en Railway:VariableValor / ReferenciaPORT3000DB_USER${{Postgres.PGUSER}}DB_PASSWORD${{Postgres.PGPASSWORD}}DB_HOST${{Postgres.PGHOST}}DB_NAME${{Postgres.PGDATABASE}}DB_PORT${{Postgres.PGPORT}}Railway detectará el archivo package.json de forma automática e iniciará la aplicación mediante el script npm start.🤖 Registro del Uso de AI en el ProyectoDurante el desarrollo de este proyecto integrador se utilizaron herramientas de Inteligencia Artificial (IA) como apoyo y copiloto de código bajo los siguientes lineamientos:Asistencia en Debugging y Git: Uso de IA para resolver advertencias y estados avanzados de control de versiones (conflictos con commits, estados de detached HEAD) y lecturas de errores de sintaxis en la consola.Optimización de Pruebas Automatizadas: Soporte en la estructura de aserciones asincrónicas cruzando respuestas mediante Jest y Supertest en authors.test.js y post.test.js.Estructuración de Documentación: Colaboración en el armado arquitectónico y la redacción clara de guías de despliegue para el repositorio.
