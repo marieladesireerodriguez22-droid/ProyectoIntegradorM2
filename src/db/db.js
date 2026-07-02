@@ -1,4 +1,3 @@
-// Cargar dotenv acá asegura que las credenciales existan antes de crear la conexión
 require('dotenv').config();
 const { Pool } = require('pg');
 
@@ -8,11 +7,15 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
+  // 🔒 Esto le avisa a Railway que use una conexión segura (SSL)
+  ssl: process.env.DB_HOST !== 'localhost' ? { rejectUnauthorized: false } : false
 });
 
-// Monitoreo de conexión exitosa
 pool.on('connect', () => {
   console.log('¡Conexión exitosa a PostgreSQL realizada!');
 });
 
-module.exports = pool;
+// Exportamos un objeto con la función query para mantener compatibilidad total con tu código
+module.exports = {
+  query: (text, params) => pool.query(text, params),
+};
