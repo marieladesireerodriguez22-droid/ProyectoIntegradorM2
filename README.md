@@ -1,4 +1,5 @@
-📚 API Proyecto Integrador M2
+Markdown
+# 📚 API Proyecto Integrador M2
 
 API REST de una plataforma de publicaciones con autores y posts, construida con Express.js y PostgreSQL.
 
@@ -44,9 +45,30 @@ El proyecto expone endpoints CRUD para gestionar autores y sus publicaciones. In
  ┣ 📂 tests/            → Tests automatizados (Jest + Supertest)
  ┣ 📜 .env.example      → Plantilla de variables de entorno
  ┗ 📜 package.json      → Scripts y dependencias
-🚀 RequisitosNode.js >= 18PostgreSQL >= 13npm⚙️ Pasos para Ejecutar en LocalClonar el repositorio:Bashgit clone [https://github.com/marieladesireerodriguez22-droid/ProyectoIntegradorM2.git](https://github.com/marieladesireerodriguez22-droid/ProyectoIntegradorM2.git)
+🚀 Requisitos
+Node.js >= 18
+
+PostgreSQL >= 13
+
+npm
+
+⚙️ Pasos para Ejecutar en Local
+Clonar el repositorio:
+
+Bash
+git clone [https://github.com/marieladesireerodriguez22-droid/ProyectoIntegradorM2.git](https://github.com/marieladesireerodriguez22-droid/ProyectoIntegradorM2.git)
 cd ProyectoIntegradorM2
-Instalar dependencias:Bashnpm install
-Configurar variables de entorno:Crea un archivo .env basado en .env.example con tus credenciales de PostgreSQL local.Iniciar el servidor:Bashnpm start
-Servidor disponible en http://localhost:3000🧪 Cómo Ejecutar los TestsEl proyecto incluye pruebas de integración para verificar los endpoints y validaciones:Bashnpm test
+Instalar dependencias:
+
+Bash
+npm install
+Configurar variables de entorno:
+Crea un archivo .env basado en .env.example con tus credenciales de PostgreSQL local.
+
+Iniciar el servidor:
+
+Bash
+npm start
+Servidor disponible en http://localhost:3000
+🧪 Cómo Ejecutar los TestsEl proyecto incluye pruebas de integración para verificar los endpoints y validaciones:Bashnpm test
 ☁️ Guía de Deployment en RailwayConectar el Repositorio: Conecta tu cuenta de GitHub a Railway y crea un proyecto desde el repositorio.Base de Datos: Agrega un plugin de PostgreSQL en el mismo espacio de trabajo.Variables de Entorno: En la pestaña "Variables" del servicio de tu API, configura las siguientes referencias para que se comuniquen con la base de datos de Railway:VariableReferencia / ValorPORT3000DB_USER${{Postgres-FKiw.PGUSER}}DB_PASSWORD${{Postgres-FKiw.PGPASSWORD}}DB_HOST${{Postgres-FKiw.PGHOST}}DB_DATABASE${{Postgres-FKiw.PGDATABASE}}DB_PORT${{Postgres-FKiw.PGPORT}}NODE_ENVproduction🤖 Registro del Uso de IADurante el desarrollo se utilizaron herramientas de IA como apoyo para:Debugging: Resolución de errores de sintaxis y configuración de entorno.Pruebas: Soporte en la estructura de aserciones asincrónicas con Jest.Documentación: Redacción y estructuración de este archivo README.
