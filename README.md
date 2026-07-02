@@ -8,63 +8,45 @@ El proyecto expone endpoints CRUD para gestionar autores y sus publicaciones. In
 
 * **Stack técnico:** Node.js · Express 4 · PostgreSQL · pg · Jest · Supertest
 * **Deploy en Railway:**
-🏠 Estado/Bienvenida: https://proyectointegradorm2-production.up.railway.app/
-
-👥 Autores: https://proyectointegradorm2-production.up.railway.app/api/authors
-
-📝 Publicaciones: https://proyectointegradorm2-production.up.railway.app/api/posts
+  * **URL Base:** https://proyectointegradorm2-production.up.railway.app
+  * **Endpoints de Autores:** https://proyectointegradorm2-production.up.railway.app/api/authors
+  * **Endpoints de Posts:** https://proyectointegradorm2-production.up.railway.app/api/posts
 
 ## 📍 Endpoints Disponibles
 
 | Método | Ruta | Descripción |
 | :--- | :--- | :--- |
 | **GET** | `/` | Estado del servidor / Bienvenida |
-| **GET** | `/authors` | Listar todos los autores |
-| **POST** | `/authors` | Crear un nuevo autor (Valida campos obligatorios) |
-| **GET** | `/authors/:id` | Obtener un autor por ID |
-| **PUT** | `/authors/:id` | Actualizar un autor por ID |
-| **DELETE** | `/authors/:id` | Eliminar un autor por ID |
-| **GET** | `/posts` | Listar todas las publicaciones |
-| **POST** | `/posts` | Crear una nueva publicación (Valida campos obligatorios) |
-| **GET** | `/posts/:id` | Obtener una publicación por ID |
-| **PUT** | `/posts/:id` | Actualizar una publicación por ID |
-| **DELETE** | `/posts/:id` | Eliminar una publicación por ID |
+| **GET** | `/api/authors` | Listar todos los autores |
+| **POST** | `/api/authors` | Crear un nuevo autor |
+| **GET** | `/api/authors/:id` | Obtener un autor por ID |
+| **PUT** | `/api/authors/:id` | Actualizar un autor por ID |
+| **DELETE** | `/api/authors/:id` | Eliminar un autor por ID |
+| **GET** | `/api/posts` | Listar todas las publicaciones |
+| **POST** | `/api/posts` | Crear una nueva publicación |
+| **GET** | `/api/posts/:id` | Obtener una publicación por ID |
+| **PUT** | `/api/posts/:id` | Actualizar una publicación por ID |
+| **DELETE** | `/api/posts/:id` | Eliminar una publicación por ID |
 
 ## 📁 Estructura del Proyecto
 
 ```text
 📦 ProyectoIntegradorM2
  ┣ 📂 src/
- ┃ ┣ 📂 controllers/     → Manejadores de peticiones HTTP
+ ┃ ┣ 📂 controllers/    → Manejadores de peticiones HTTP
  ┃ ┣ 📂 db/
- ┃ ┃ ┗ 📜 db.js          → Configuración del Pool de PostgreSQL
- ┃ ┣ 📂 middlewares/    → Validaciones (validateAuthor, validatePost)
- ┃ ┣ 📂 routes/         → Definición de rutas REST (authorRoutes, postRoutes)
- ┃ ┣ 📂 services/       → Lógica de negocio y consultas SQL parametrizadas
- ┃ ┣ 📜 app.js          → Configuración de Express
+ ┃ ┃ ┗ 📜 db.js         → Configuración del Pool de PostgreSQL
+ ┃ ┣ 📂 middlewares/    → Validaciones
+ ┃ ┣ 📂 routes/         → Definición de rutas REST
+ ┃ ┣ 📂 services/       → Lógica de negocio y consultas SQL
+ ┃ ┣ 📜 app.js          → Configuración de Express y rutas
  ┃ ┗ 📜 server.js       → Punto de entrada del servidor
- ┣ 📂 tests/            → Tests automatizados (authors.test, post.test)
- ┣ 📜 .env
+ ┣ 📂 tests/            → Tests automatizados (Jest + Supertest)
  ┣ 📜 .env.example      → Plantilla de variables de entorno
- ┣ 📜 .gitignore
- ┣ 📜 package-lock.json
- ┗ 📜 package.json      → Scripts y dependencias del proyecto
-🚀 RequisitosNode.js >= 18PostgreSQL >= 13npm⚙️ Pasos para Ejecutar en LocalBash# 1. Clonar el repositorio
-git clone [https://github.com/marieladesireerodriguez22-droid/ProyectoIntegradorM2.git](https://github.com/marieladesireerodriguez22-droid/ProyectoIntegradorM2.git)
+ ┗ 📜 package.json      → Scripts y dependencias
+🚀 RequisitosNode.js >= 18PostgreSQL >= 13npm⚙️ Pasos para Ejecutar en LocalClonar el repositorio:Bashgit clone [https://github.com/marieladesireerodriguez22-droid/ProyectoIntegradorM2.git](https://github.com/marieladesireerodriguez22-droid/ProyectoIntegradorM2.git)
 cd ProyectoIntegradorM2
-
-# 2. Instalar dependencias
-npm install
-
-# 3. Configurar variables de entorno
-cp .env.example .env
-Editar el .env con tus datos de pgAdmin local:Fragmento de códigoPORT=3000
-DB_USER=tu_usuario_postgres
-DB_PASSWORD=tu_contraseña
-DB_HOST=localhost
-DB_NAME=m2_proyectointegrador
-DB_PORT=5432
-Bash# 4. Iniciar el servidor
-npm start
-Servidor disponible en http://localhost:3000🧪 Cómo Ejecutar los TestsEl proyecto incluye pruebas de integración que verifican el correcto funcionamiento de las operaciones CRUD y las validaciones de datos.Bashnpm test
-☁️ Guía de Deployment en Railway1. Conectar el RepositorioIniciá sesión en Railway con tu cuenta de GitHub.Creá un New Project y seleccioná Deploy from GitHub repository apuntando a ProyectoIntegradorM2.2. Base de Datos en la NubeAgregá un plugin de PostgreSQL desde el dashboard del mismo espacio de trabajo.3. Variables de Entorno en RailwayEn la pestaña Variables del servicio de tu API de Express, asociá las credenciales usando las referencias internas de tu Postgres en Railway:VariableValor / ReferenciaPORT3000DB_USER${{Postgres.PGUSER}}DB_PASSWORD${{Postgres.PGPASSWORD}}DB_HOST${{Postgres.PGHOST}}DB_NAME${{Postgres.PGDATABASE}}DB_PORT${{Postgres.PGPORT}}Railway detectará el archivo package.json de forma automática e iniciará la aplicación mediante el script npm start.🤖 Registro del Uso de AI en el ProyectoDurante el desarrollo de este proyecto integrador se utilizaron herramientas de Inteligencia Artificial (IA) como apoyo y copiloto de código bajo los siguientes lineamientos:Asistencia en Debugging y Git: Uso de IA para resolver advertencias y estados avanzados de control de versiones (conflictos con commits, estados de detached HEAD) y lecturas de errores de sintaxis en la consola.Optimización de Pruebas Automatizadas: Soporte en la estructura de aserciones asincrónicas cruzando respuestas mediante Jest y Supertest en authors.test.js y post.test.js.Estructuración de Documentación: Colaboración en el armado arquitectónico y la redacción clara de guías de despliegue para el repositorio.
+Instalar dependencias:Bashnpm install
+Configurar variables de entorno:Crea un archivo .env basado en .env.example con tus credenciales de PostgreSQL local.Iniciar el servidor:Bashnpm start
+Servidor disponible en http://localhost:3000🧪 Cómo Ejecutar los TestsEl proyecto incluye pruebas de integración para verificar los endpoints y validaciones:Bashnpm test
+☁️ Guía de Deployment en RailwayConectar el Repositorio: Conecta tu cuenta de GitHub a Railway y crea un proyecto desde el repositorio.Base de Datos: Agrega un plugin de PostgreSQL en el mismo espacio de trabajo.Variables de Entorno: En la pestaña "Variables" del servicio de tu API, configura las siguientes referencias para que se comuniquen con la base de datos de Railway:VariableReferencia / ValorPORT3000DB_USER${{Postgres-FKiw.PGUSER}}DB_PASSWORD${{Postgres-FKiw.PGPASSWORD}}DB_HOST${{Postgres-FKiw.PGHOST}}DB_DATABASE${{Postgres-FKiw.PGDATABASE}}DB_PORT${{Postgres-FKiw.PGPORT}}NODE_ENVproduction🤖 Registro del Uso de IADurante el desarrollo se utilizaron herramientas de IA como apoyo para:Debugging: Resolución de errores de sintaxis y configuración de entorno.Pruebas: Soporte en la estructura de aserciones asincrónicas con Jest.Documentación: Redacción y estructuración de este archivo README.
