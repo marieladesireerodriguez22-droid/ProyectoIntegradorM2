@@ -1,4 +1,4 @@
-Markdown# 📚 API Proyecto Integrador M2
+📚 API Proyecto Integrador M2
 
 API REST de una plataforma de publicaciones con autores y posts, construida con Express.js y PostgreSQL.
 
