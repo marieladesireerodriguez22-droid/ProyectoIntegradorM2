@@ -1,21 +1,20 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 
+// 💡 Si Railway te da la URL completa (DATABASE_URL), la usa directamente.
+// Si no, arma la conexión con las variables separadas.
+const connectionString = process.env.DATABASE_URL || `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-  // 🔒 Esto le avisa a Railway que use una conexión segura (SSL)
-  ssl: process.env.DB_HOST !== 'localhost' ? { rejectUnauthorized: false } : false
+  connectionString: connectionString,
+  // 🔒 SSL obligatorio para que Railway no te rebote la conexión segura
+  ssl: process.env.DATABASE_URL || process.env.DB_HOST !== 'localhost' ? { rejectUnauthorized: false } : false
 });
 
 pool.on('connect', () => {
   console.log('¡Conexión exitosa a PostgreSQL realizada!');
 });
 
-// Exportamos un objeto con la función query para mantener compatibilidad total con tu código
 module.exports = {
   query: (text, params) => pool.query(text, params),
 };
